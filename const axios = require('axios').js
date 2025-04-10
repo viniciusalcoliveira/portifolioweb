@@ -25,11 +25,32 @@ window.botpressWebChat.init({
   meu_telefone: event.payload.phone,
   mensagem: event.payload.message || 'Interesse em serviços'
 };
+const axios = require('axios');
 
-const response = await axios.post('https://formsubmit.co/viniciusextreme2299@gmail.com', formData);
+// Gera um ID único com timestamp
+const lead_id = `lead_${event.threadId}_${Date.now()}`;
 
-if (response.status === 200) {
-  bp.logger.info('✅ Lead enviado para o e-mail com sucesso!');
-} else {
-  bp.logger.warn('⚠️ Falha ao enviar o formulário: ' + response.status);
+// Dados capturados no fluxo (ajuste os nomes se forem diferentes)
+const formData = {
+  meu_nome: event.payload.name || 'Nome não informado',
+  meu_email: event.payload.email || 'Email não informado',
+  meu_telefone: event.payload.phone || 'Telefone não informado',
+  mensagem: event.payload.message || 'Mensagem não informada',
+  conversa_id: lead_id
+};
+
+try {
+  const res = await axios.post('https://formsubmit.co/ajax/viniciusextreme2299@gmail.com', formData, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (res.status === 200) {
+    bp.logger.info(`✅ Novo lead enviado (${lead_id})`);
+  } else {
+    bp.logger.warn(`⚠️ Erro ao enviar lead (${lead_id}): ${res.status}`);
+  }
+} catch (err) {
+  bp.logger.error(`❌ Falha ao enviar lead (${lead_id}): ${err.message}`);
 }
