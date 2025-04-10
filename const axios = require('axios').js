@@ -40,17 +40,24 @@ const formData = {
 };
 
 try {
-  const res = await axios.post('https://formsubmit.co/ajax/viniciusextreme2299@gmail.com', formData, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+ const axios = require('axios')
 
-  if (res.status === 200) {
-    bp.logger.info(`✅ Novo lead enviado (${lead_id})`);
-  } else {
-    bp.logger.warn(`⚠️ Erro ao enviar lead (${lead_id}): ${res.status}`);
-  }
-} catch (err) {
-  bp.logger.error(`❌ Falha ao enviar lead (${lead_id}): ${err.message}`);
+const { nome, email, telefone, interesse } = event.payload.formData || {}
+
+if (!nome || !email || !telefone || !interesse) {
+  return { success: false, message: 'Campos incompletos' }
 }
+
+// Enviar os dados para o FormSubmit (que entrega para seu e-mail)
+await axios.post('https://formsubmit.co/ajax/viniciusextreme2299@gmail.com', {
+  meu_nome: nome,
+  meu_email: email,
+  meu_telefone: telefone,
+  interesse: interesse
+}, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+
+return { success: true, message: 'Lead enviado com sucesso!' }
