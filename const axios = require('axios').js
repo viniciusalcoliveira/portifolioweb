@@ -19,4 +19,17 @@ window.botpressWebChat.init({
       chatbotButton.style.display = 'none';
     }
   });
-    
+    const formData = {
+  meu_nome: event.payload.name,
+  meu_email: event.payload.email,
+  meu_telefone: event.payload.phone,
+  mensagem: event.payload.message || 'Interesse em serviços'
+};
+
+const response = await axios.post('https://formsubmit.co/viniciusextreme2299@gmail.com', formData);
+
+if (response.status === 200) {
+  bp.logger.info('✅ Lead enviado para o e-mail com sucesso!');
+} else {
+  bp.logger.warn('⚠️ Falha ao enviar o formulário: ' + response.status);
+}
