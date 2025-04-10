@@ -81,7 +81,10 @@
     <section id="contato" class="contato">
       <div class="container">
         <h2>Fale Comigo</h2>
-        <form action="salvar-contato.php" method="POST">
+        <form action="https://formsubmit.co/viniciusextreme2299@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://viniciusalcoliveira.github.io/portifolioweb/#contato">
+
           <input type="text" name="meu_nome" placeholder="Seu nome" required />
           <input type="email" name="meu_email" placeholder="Seu e-mail" required />
           <input 
@@ -119,7 +122,7 @@
 
   <!-- Botão para abrir e fechar o chatbot -->
   <button id="toggle-chatbot" style="position: fixed; bottom: 20px; right: 20px; background-color: #00bfff; color: white; border: none; border-radius: 50%; padding: 10px; font-size: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); z-index: 10000;">
-    <i class="fas fa-comment-dots"></i>  <!-- Ícone de "Abrir" -->
+    <i class="fas fa-comment-dots"></i>
   </button>
 
   <!-- Chatbot Dani com janela menor -->
@@ -128,7 +131,7 @@
     src="https://cdn.botpress.cloud/webchat/v2.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/04/08/01/20250408013949-IJ2TJSY7.json"
     style="position: fixed; bottom: 80px; right: 20px; width: 300px; height: 360px; border: none; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); z-index: 9999;" 
     allow="clipboard-write; microphone;"
-    hidden  <!-- Começa oculto -->
+    hidden
   ></iframe>
 
   <script>
@@ -138,38 +141,13 @@
     toggleButton.addEventListener('click', () => {
       if (chatbotIframe.hidden) {
         chatbotIframe.hidden = false;
-        toggleButton.innerHTML = '<i class="fas fa-times"></i>';  // Ícone de "Fechar"
+        toggleButton.innerHTML = '<i class="fas fa-times"></i>';
       } else {
         chatbotIframe.hidden = true;
-        toggleButton.innerHTML = '<i class="fas fa-comment-dots"></i>';  // Ícone de "Abrir"
+        toggleButton.innerHTML = '<i class="fas fa-comment-dots"></i>';
       }
     });
   </script>
-<div class="container">
-  <h1>FormSubmit Demo</h1>
-  <form target="_blank" action="https://formsubmit.co/your@email.com" method="POST">
-    <div class="form-group">
-      <div class="form-row">
-        <div class="col">
-          <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-        </div>
-        <div class="col">
-          <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
-  </form>
-</div>
-<form method="POST" action="https://formsubmit.co/viniciusextreme2299@gmail.com">
-  <input type="text" name="nome" placeholder="Seu nome" required>
-  <input type="email" name="email" placeholder="Seu e-mail" required>
-  <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
-  <button type="submit">Enviar</button>
-</form>
 
 </body>
 </html>
